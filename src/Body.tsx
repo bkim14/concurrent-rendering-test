@@ -1,11 +1,18 @@
 import Row from "./Row.tsx";
 import React from "react";
 
-const Body = React.memo(({num}:{num:number})=>{
-    console.log('xx');
+const Body = React.memo(({num, mult, from}:{num:number, mult:number, from:number})=>{
     return <div style={{display:'flex', flexDirection:'column'}}>
-        {Array(500).fill(0).map((_, idx)=>{
-            return <Row key={`${num}-${idx}`} num={idx*num}/>;
+        {Array(mult).fill(0).map((_,idx)=>idx).filter((_,idx)=>idx>=from).map((val)=>{
+
+            return <Row key={`${mult}-${num}-${val}`} myKey={`${mult}-${num}-${val}`} num={val*num}/>;
+
+
+/*
+            return <Row key={`${idx}`} myKey={`${idx}`} num={val*num}/>;
+*/
+
+
         })}
     </div>;
 });
